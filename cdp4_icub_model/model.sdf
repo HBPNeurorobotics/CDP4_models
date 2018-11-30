@@ -1632,7 +1632,7 @@
       <pose>-0.0564 0 0.34685 -1.5708 1.46928e-05 8.36603e-06</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>0.5</mass>
+        <mass>0.002</mass>
         <inertia>
           <ixx>0.01</ixx>
           <ixy>0</ixy>
@@ -1748,7 +1748,7 @@
         <visualize>true</visualize>
         <topic>/icub_model/left_eye_camera/image_raw</topic>
         <camera name="left_eye">
-          <horizontal_fov>1.570796</horizontal_fov>
+          <horizontal_fov>1.22173</horizontal_fov>
           <image>
             <width>320</width>
             <height>240</height>
@@ -1782,6 +1782,90 @@
           <distortionT2>0.0</distortionT2>
         </plugin>
       </sensor>
+
+      <sensor type="camera" name="camera_left_wide">
+        <pose>0 0 0 1.5708 3.1415 0</pose>
+        <update_rate>30.0</update_rate>
+        <always_on>1</always_on>
+        <visualize>true</visualize>
+        <topic>/icub_model/left_wide_eye_camera/image_raw</topic>
+        <camera name="left_wide_eye">
+          <horizontal_fov>2.0944</horizontal_fov>
+          <!-- <horizontal_fov>2.79253</horizontal_fov> -->
+          <!-- <horizontal_fov>2.44346</horizontal_fov> -->
+          <image>
+            <width>1280</width>
+            <height>1280</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>100</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise is sampled independently per pixel on each frame.
+                 That pixel's noise value is added to each of its color
+                 channels, which at that point lie in the range [0,1]. -->
+            <mean>0.0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>30.0</updateRate>
+          <cameraName>icub_model/left_wide_eye_camera</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_link</frameName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+
+      <!-- <sensor name='camera_wide_angle' type='wideanglecamera'> -->
+      <!--   <camera name='wide_angle'> -->
+      <!--     <horizontal_fov>3.14159</horizontal_fov> -->
+      <!--     <image> -->
+      <!--       <width>1280</width> -->
+      <!--       <height>1280</height> -->
+      <!--     </image> -->
+      <!--     <clip> -->
+      <!--       <near>1</near> -->
+      <!--       <far>10</far> -->
+      <!--     </clip> -->
+      <!--     <lens> -->
+      <!--       <type>stereographic</type> -->
+      <!--       <scale_to_hfov>1</scale_to_hfov> -->
+      <!--       <cutoff_angle>1.5708</cutoff_angle> -->
+      <!--       <env_texture_size>512</env_texture_size> -->
+      <!--     </lens> -->
+      <!--   </camera> -->
+      <!--   <plugin name='camera_controller' filename='libgazebo_ros_camera.so'> -->
+      <!--     <alwaysOn>true</alwaysOn> -->
+      <!--     <updateRate>30.0</updateRate> -->
+      <!--     <cameraName>icub_model/left_wide_angle</cameraName> -->
+      <!--     <imageTopicName>image_raw</imageTopicName> -->
+      <!--     <cameraInfoTopicName>camera_info</cameraInfoTopicName> -->
+      <!--     <frameName>camera_link</frameName> -->
+      <!--     <hackBaseline>0.07</hackBaseline> -->
+      <!--     <distortionK1>0.0</distortionK1> -->
+      <!--     <distortionK2>0.0</distortionK2> -->
+      <!--     <distortionK3>0.0</distortionK3> -->
+      <!--     <distortionT1>0.0</distortionT1> -->
+      <!--     <distortionT2>0.0</distortionT2> -->
+      <!--     <CxPrime>0</CxPrime> -->
+      <!--     <Cx>0.0</Cx> -->
+      <!--     <Cy>0.0</Cy> -->
+      <!--     <focalLength>0.0</focalLength> -->
+      <!--   </plugin> -->
+      <!--   <pose frame=''>0 0 0 -0 -0 0</pose> -->
+      <!-- </sensor> -->
+
     </link>
     <joint name='left_eye_pan' type='revolute'>
       <child>left_eye</child>
@@ -1871,7 +1955,7 @@
         <visualize>true</visualize>
         <topic>/icub_model/right_eye_camera/image_raw</topic>
         <camera name="right_eye">
-          <horizontal_fov>1.570796</horizontal_fov>
+          <horizontal_fov>1.22173</horizontal_fov>
           <image>
             <width>320</width>
             <height>240</height>
